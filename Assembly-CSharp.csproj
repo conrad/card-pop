@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\TargetCardMapper.cs" />
      <Compile Include="Assets\Scripts\View\CardOverlayController.cs" />
      <Compile Include="Assets\Scripts\View\HeightMapper.cs" />
+     <Compile Include="Assets\Scripts\View\ObjectScaler.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CylinderTargetBehaviour.cs" />

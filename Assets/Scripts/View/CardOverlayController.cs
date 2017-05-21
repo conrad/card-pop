@@ -6,6 +6,8 @@ public class CardOverlayController : MonoBehaviour
 {
 	public GameObject cardBanner;
 	public GameObject currentBalanceBlock;
+	public GameObject currentBalanceAmount;
+	public GameObject currentBalanceTitle;
 	public float growthRate = 0.001f;
 
 
@@ -22,10 +24,16 @@ public class CardOverlayController : MonoBehaviour
 
 	public void ShowOverlay(Account account)
 	{
-		StartCoroutine(ExpandCurrentBalance(account.CurrentBalance));
+		ActivateCurrentBalanceElements(account.CurrentBalance);
 //		StartCoroutine(FadeIn(cardBanner));
 
 		bannerText.text = account.Name;
+	}
+
+
+	void ActivateCurrentBalanceElements(float currentBalance)
+	{
+		StartCoroutine(ExpandCurrentBalance(currentBalance));
 	}
 
 
@@ -34,8 +42,8 @@ public class CardOverlayController : MonoBehaviour
 		while (currentBalanceBlock.transform.localScale.y < heightMapper.GetHeightFromAmount(balance)) {
 			currentBalanceBlock.transform.position = new Vector3(
 				currentBalanceBlock.transform.position.x, 
-				currentBalanceBlock.transform.position.y + growthRate,
-				currentBalanceBlock.transform.position.z
+				currentBalanceBlock.transform.position.y,
+				currentBalanceBlock.transform.position.z  + growthRate * 2.5f  // I don't understand why this is working in the z-axis, instead of the y-axis. And 2.5f is just a magic number.
 			);
 
 			currentBalanceBlock.transform.localScale = new Vector3(
@@ -46,7 +54,23 @@ public class CardOverlayController : MonoBehaviour
 
 			yield return null;
 		}
+
+		SetCurrentBalanceAmountObject(balance);
 	}
+
+
+	void SetCurrentBalanceAmountObject(float amount)
+	{
+		currentBalanceAmount.transform.position = new Vector3(
+			currentBalanceAmount.transform.position.x, 
+			currentBalanceAmount.transform.position.y,
+			currentBalanceTitle.transform.position.z + 0.1f + currentBalanceBlock.transform.localScale.y * 4f
+
+		);
+
+		currentBalanceAmount.GetComponent<TextMesh>().text = "$" + amount;
+	}
+
 
 	public void MinimizeCurrentBalance()
 	{

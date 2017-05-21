@@ -33,7 +33,7 @@ public class CardDataService
 		return new CreditCardAccount(
 			1,
 			targetCardMapper.MapCardFromTarget(targetName), 
-			23334.33f,
+			2332.33f,
 			1111.11f,
 			43444.44f
 		);
