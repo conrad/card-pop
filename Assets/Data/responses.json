@@ -1,0 +1,98 @@
+Access Token: access-development-81663c2d-8816-4766-a8ce-ecf0b662b51d
+Item ID: M3y7A13DrYUmLKXaJMwDS9AKNdeV7yHVdrQzo
+[ { account_id: 'JPqoO6PwbVI9gXEj6zL4Sm0KMJQEKdugwD4XD',
+    balances: { available: 12000, current: 0, limit: 12000 },
+    mask: '7031',
+    name: 'CREDIT CARD',
+    official_name: null,
+    subtype: 'credit card',
+    type: 'credit' },
+  { account_id: 'x4jz9O4VJetvgKZdEJxofB0PNgxRPauLzxbJX',
+    balances: { available: 9880.83, current: 119.17, limit: 10000 },
+    mask: '9252',
+    name: 'CREDIT CARD',
+    official_name: null,
+    subtype: 'credit card',
+    type: 'credit' },
+  { account_id: '88mq1a8ORvIjREPqYA5LcPmrjeqMr8u5a4EJE',
+    balances: { available: 27627.62, current: 2340.02, limit: 29967.64 },
+    mask: '9941',
+    name: 'CREDIT CARD',
+    official_name: null,
+    subtype: 'credit card',
+    type: 'credit' } ]
+pulled 63 transactions
+
+
+Access Token: access-development-c873c0f1-2238-4fc2-a687-5fd1b8a1d8cb
+Item ID: Oxvxm659XPIbZ1Z3RZ11cQpJAZVq6wc3oEMmb
+[ { account_id: 'XEZE9KBDawtonBneQnBBSm8E9vVLnrsrrNKrY',
+    balances: { available: 1.01, current: 1.01, limit: null },
+    mask: '2845',
+    name: 'Individual',
+    official_name: 'Individual',
+    subtype: 'brokerage',
+    type: 'brokerage' },
+  { account_id: 'NaAa9wrgRMIZVaVByVaaImk1qN4VajsYY68Y1',
+    balances: { available: 7314.03, current: 7314.03, limit: null },
+    mask: '6110',
+    name: 'Investor Checking',
+    official_name: 'Investor Checking',
+    subtype: 'checking',
+    type: 'depository' } ]
+pulled 10 transactions
+
+
+Access Token: access-development-36fb3078-4e7d-4b84-89e7-b18c6254b67e
+Item ID: yBD76aP6JmuZVgkQ1weRs57K4Dn6rohxXZLbQ
+[ { account_id: 'mMOg4qo43PIKEXnLyoBksk65Z9Ez5AHdxn13n',
+    balances: { available: 12000, current: 0, limit: 12000 },
+    mask: '7031',
+    name: 'CREDIT CARD',
+    official_name: null,
+    subtype: 'credit card',
+    type: 'credit' },
+  { account_id: 'z31oLxqL87C57ekJb6nZsNzeprXQeAc49Dbdr',
+    balances: { available: 9880.83, current: 119.17, limit: 10000 },
+    mask: '9252',
+    name: 'CREDIT CARD',
+    official_name: null,
+    subtype: 'credit card',
+    type: 'credit' },
+  { account_id: 'dZ8g9MR9dBS6PXgkoVbyc3Bq0Ra5qju9e6aya',
+    balances: { available: 27627.62, current: 2340.02, limit: 29967.64 },
+    mask: '9941',
+    name: 'CREDIT CARD',
+    official_name: null,
+    subtype: 'credit card',
+    type: 'credit' } ]
+
+
+[ { account_id: 'XXoobn5Z9zIQj9NbLaeesGoWwJBZxmFpMJgM1',
+    balances: { available: 100, current: 110, limit: null },
+    mask: '0000',
+    name: 'Plaid Checking',
+    official_name: 'Plaid Gold Standard 0% Interest Checking',
+    subtype: 'checking',
+    type: 'depository' },
+  { account_id: 'DZoona5mvxhdDqZElokkc57wlDNGZmImldelE',
+    balances: { available: 200, current: 210, limit: null },
+    mask: '1111',
+    name: 'Plaid Saving',
+    official_name: 'Plaid Silver Standard 0.1% Interest Saving',
+    subtype: 'savings',
+    type: 'depository' },
+  { account_id: 'VRppZA5e9lTaLQGyM3JJhDamM8Bl46Cb5lk5n',
+    balances: { available: null, current: 1000, limit: null },
+    mask: '2222',
+    name: 'Plaid CD',
+    official_name: 'Plaid Bronze Standard 0.2% Interest CD',
+    subtype: 'cd',
+    type: 'depository' },
+  { account_id: 'wn33RVj7ogHRpjLGlnPPHwN5n3jgQ1TAyM9yL',
+    balances: { available: null, current: 410, limit: 2000 },
+    mask: '3333',
+    name: 'Plaid Credit Card',
+    official_name: 'Plaid Diamond 12.5% APR Interest Credit Card',
+    subtype: 'credit',
+    type: 'credit' } ]

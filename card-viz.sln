@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "card-viz", "Assembly-CSharp.csproj", "{8F4E400E-D35A-D621-EB8E-5339EE560A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "card-viz", "Assembly-CSharp-Editor.csproj", "{F771B5FE-68FA-DB6D-BB27-2CF90D05F16A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F4E400E-D35A-D621-EB8E-5339EE560A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4E400E-D35A-D621-EB8E-5339EE560A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4E400E-D35A-D621-EB8E-5339EE560A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4E400E-D35A-D621-EB8E-5339EE560A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F771B5FE-68FA-DB6D-BB27-2CF90D05F16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F771B5FE-68FA-DB6D-BB27-2CF90D05F16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F771B5FE-68FA-DB6D-BB27-2CF90D05F16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F771B5FE-68FA-DB6D-BB27-2CF90D05F16A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
