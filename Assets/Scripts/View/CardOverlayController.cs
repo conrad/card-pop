@@ -43,7 +43,7 @@ public class CardOverlayController : MonoBehaviour
 			currentBalanceBlock.transform.position = new Vector3(
 				currentBalanceBlock.transform.position.x, 
 				currentBalanceBlock.transform.position.y,
-				currentBalanceBlock.transform.position.z  + growthRate * 2.5f  // I don't understand why this is working in the z-axis, instead of the y-axis. And 2.5f is just a magic number.
+				currentBalanceBlock.transform.position.z  + growthRate / 2f  // I don't understand why this is working in the z-axis, instead of the y-axis. And 2.5f is just a magic number.
 			);
 
 			currentBalanceBlock.transform.localScale = new Vector3(
@@ -64,7 +64,7 @@ public class CardOverlayController : MonoBehaviour
 		currentBalanceAmount.transform.position = new Vector3(
 			currentBalanceAmount.transform.position.x, 
 			currentBalanceAmount.transform.position.y,
-			currentBalanceTitle.transform.position.z + 0.1f + currentBalanceBlock.transform.localScale.y * 4f
+			currentBalanceBlock.transform.position.z + currentBalanceBlock.transform.localScale.y / 2f - 0.01f
 
 		);
 

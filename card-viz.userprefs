@@ -1,0 +1,22 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Tests/Editor/CardDataServiceTest.cs">
+    <Files>
+      <File FileName="Assets/Scripts/CardDataService.cs" Line="20" Column="42" />
+      <File FileName="Assets/Scripts/StaticTargetCardMapper.cs" Line="18" Column="30" />
+      <File FileName="Assets/Scripts/ITargetCardMapper.cs" Line="5" Column="1" />
+      <File FileName="Assets/Tests/Editor/CardDataServiceTest.cs" Line="38" Column="39" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="card-viz" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -7,7 +7,7 @@ using Vuforia;
 
 public class CardDataService
 {
-	TargetCardMapper targetCardMapper;
+	ITargetCardMapper targetCardMapper;
 
 	// TODO: Implement request to backend and deserialize JSON.
 //	public UserItems fetchUserData()
@@ -15,9 +15,9 @@ public class CardDataService
 //		
 //	}
 
-	public CardDataService()
+	public CardDataService(ITargetCardMapper TargetCardMapper)
 	{
-		targetCardMapper = new TargetCardMapper();
+		targetCardMapper = TargetCardMapper;
 	}
 
 

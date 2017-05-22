@@ -23,7 +23,7 @@ public class CardTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 	void Start()
 	{
 		sm = TrackerManager.Instance.GetStateManager();
-		cardDataService = new CardDataService();
+		cardDataService = new CardDataService(new StaticTargetCardMapper());
 
 		mTrackableBehaviour = GetComponent<TrackableBehaviour>();
 		if (mTrackableBehaviour)
