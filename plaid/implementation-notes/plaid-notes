@@ -1,0 +1,51 @@
+
+
+
+PLAID
+3 API keys
+  public_key
+  secret
+  client_id
+
+Environments
+  sandbox: Stateful sandbox environment; use test credentials
+  development: Test your integration with live credentials
+  production: Production API environment; all requests are billed
+
+Link
+  - a drop-in module that handles the credential and MFA validation process
+  - Once an Item is created, Link passes a public_token to BE for it exchange for an access_token.
+
+Access Token
+  - The access_token and item_id uniquely identify an Item.
+  - the Item’s access_token, which is specific to your API keys and cannot be shared or used by any other API keys.
+  - By default, an access_token never expires, but you can rotate it.
+    - To rotate it: POST to /item/access_token/invalidate endpoint, and it returns a new access_token and invalidates the previous access_token.
+
+
+  - Use the access_token, client_id, and secret to access/change Item over time.
+
+
+
+
+store access_token and item_id combinations that map to individual users in your system.
+
+
+
+UNITY INTERACTIONS
+  - A UnityWebRequest object manages the other two objects, and also handles HTTP flow control. This object is where custom headers and URLs are defined, and where error and redirect information is stored.
+
+  For any HTTP transaction, the normal code flow is:
+    Create a Web Request object
+    Configure the Web Request object
+    Set custom headers
+    Set HTTP verb (such as GET, POST, HEAD - custom verbs are permitted on all platforms except for Android)
+    Set URL
+    (Optional) Create an Upload Handler and attach it to the Web Request
+    Provide data to be uploaded
+    Provide HTTP form to be uploaded
+    (Optional) Create a Download Handler and attach it to the Web Request
+    Send the Web Request
+    If inside a coroutine, you may Yield the result of the Send() call to wait for the request to complete
+    (Optional) Read received data from the Download Handler
+    (Optional) Read error information, HTTP status code and response headers from the UnityWebRequest object
