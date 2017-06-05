@@ -2,3 +2,4 @@ card-vizTemp/
 card-viz/Assets/Resources/VuforiaConfiguration.asset
 .DS_Store
 todo
+*.log
