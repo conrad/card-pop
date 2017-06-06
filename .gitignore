@@ -1,5 +1,8 @@
-card-vizTemp/
-card-viz/Assets/Resources/VuforiaConfiguration.asset
 .DS_Store
+node_modules/
+card-viz/Temp/
+card-viz/Assets/Resources/VuforiaConfiguration.asset
 todo
 *.log
+images/
+credentials/
