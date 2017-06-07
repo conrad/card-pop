@@ -1,7 +1,22 @@
 'use strict';
 
+const cryptoJs = require('crypto-js');
+const uuid = require('uuid');
+const AWS = require('aws-sdk');
+
+AWS.config.setPromisesDependency(require('bluebird'));
+
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
 module.exports.create = (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
+
+  if (requestBody == null) {
+    console.error('Validation Failed');
+    callback(new Error('Couldn\'t create user because of validation errors.'));
+    return;
+  }
+
   const email = requestBody.email;
   const password = requestBody.password;
 
@@ -45,7 +60,8 @@ const createUser = user => {
 
 const userInfo = (email, password) => {
   const timestamp = new Date().getTime();
-  const hash = sha1(password);
+  const hash = cryptoJs.SHA256(password).toString(cryptoJs.enc.Base64);
+
   return {
     id: uuid.v1(),
     email: email,

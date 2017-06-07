@@ -10,17 +10,18 @@ provider:
   runtime: nodejs6.10
   stage: dev
   region: us-east-1
-  # environment:
-  #   USER_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-  #   USER_EMAIL_TABLE: "user-email-${opt:stage, self:provider.stage}"
-  #   USER_ACCOUNT_TABLE: "user-account-${opt:stage, self:provider.stage}"
-  #   iamRoleStatements:
-  #     - Effect: Allow
-  #       Action:
-  #         - dynamodb:Query
-  #         - dynamodb:GetItem
-  #         - dynamodb:PutItem
-  #       Resource: "*"
+  environment:
+    USER_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    USER_EMAIL_TABLE: "user-email-${opt:stage, self:provider.stage}"
+    USER_ACCOUNT_TABLE: "user-account-${opt:stage, self:provider.stage}"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "*"
+
 functions:
   userCreation:
     handler: api/users.create
@@ -30,6 +31,42 @@ functions:
       - http:
           path: users/create
           method: post
+  addAccount:
+    handler: api/accounts.add
+    description: Add new financial accounts to a user profile.
+    events:
+      - http:
+          path: users/{id}/accounts/add
+          method: post
+  # getAccountData:
+  #   handler: api/accounts.get
+  #   memorySize: 128
+  #   description: Create new user.
+  #   events:
+  #     - http:
+  #         path: users/create
+  #         method: post
+
+resources:
+  Resources:
+    UsersDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "id"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: "id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.USER_TABLE}
 
 
 
