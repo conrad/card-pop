@@ -25,17 +25,17 @@ var client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 );
 
-// app.use(bodyParser.urlencoded({
-//   extended: false
-// }));
-// app.use(bodyParser.json());
-
+/**
+ * @param {string} publicToken Token retrived from Plaid by FE integration
+ *                               Link, which sends it here.
+ * @return {string} The item ID and access token for retrieving data from Plaid.
+ */
 module.exports.getAccessToken = function (publicToken) {
   PUBLIC_TOKEN = publicToken;
   client.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
     if (error != null) {
       console.log('Could not exchange public_token!' + '\n' + error);
-      return false;
+      return { error: true };   // Find out more about the structure this error
     }
 
     ACCESS_TOKEN = tokenResponse.access_token;
@@ -43,7 +43,10 @@ module.exports.getAccessToken = function (publicToken) {
     console.log('Access Token: ' + ACCESS_TOKEN);
     console.log('Item ID: ' + ITEM_ID);
 
-    return true;
+    return {
+      itemId: ITEM_ID,
+      accessToken: ACCESS_TOKEN
+    };
   });
 };
 
@@ -52,36 +55,37 @@ module.exports.setAccessToken = accessToken => {
   return true;
 };
 
+/**
+ * @return {object} Returns data objects on accounts for item (~institution)
+ * TODO: Understand better the structure of this data.
+ */
 module.exports.getAccounts => {
   client.getAuth(ACCESS_TOKEN, function(error, authResponse) {
     if (error != null) {
       var msg = 'Unable to pull accounts from the Plaid API.';
       console.log(msg + '\n' + error);
-      return {
-        error: true,
-        message: msg
-      };
+
+      return { error: msg };
     }
 
-    console.log(authResponse.accounts);
     return {
-      error: false,
       accounts: authResponse.accounts,
-      numbers: authResponse.numbers,
+      numbers: authResponse.numbers,\
     };
   });
 };
 
+/**
+ * @return {object} Returns data objects on the item (~institution)
+ * TODO: Understand better the structure of this data.
+ */
 module.exports.getItem => {
   // Pull Item - info on products available & billed, webhook info, etc.
   client.getItem(ACCESS_TOKEN, function(error, itemResponse) {
     if (error != null) {
       console.log(JSON.stringify(error));
 
-      return {
-        error: true,
-        message: error
-      };
+      return { error: error };
     }
 
     // Also pull information about the institution
@@ -90,21 +94,21 @@ module.exports.getItem => {
         var msg = 'Unable to pull institution information from the Plaid API.';
         console.log(msg + '\n' + error);
 
-        return {
-          error: true,
-          message: msg
-        };
+        return { error: msg };
       } else {
         return {
-          error: false,
           item: itemResponse.item,
-          institution: instRes.institution,
+          institution: instRes.institution
         };
       }
     });
   });
 };
 
+/**
+ * @return {object} Returns data object on transactions for a user.
+ * TODO: Understand better the structure of this data.
+ */
 module.export.getTransactions => {
   // Pull transactions for the Item for the last 30 days
   var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
@@ -117,12 +121,10 @@ module.export.getTransactions => {
     if (error != null) {
       console.log(JSON.stringify(error));
 
-      return {
-        error: true,
-        message: error
-      };
+      return { error: error };
     }
     console.log('pulled ' + transactionsResponse.transactions.length + ' transactions');
+
     return transactionsResponse;
   });
 };
