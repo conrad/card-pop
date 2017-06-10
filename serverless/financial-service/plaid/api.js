@@ -28,14 +28,15 @@ var client = new plaid.Client(
 /**
  * @param {string} publicToken Token retrived from Plaid by FE integration
  *                               Link, which sends it here.
- * @return {string} The item ID and access token for retrieving data from Plaid.
+ * @param {function} cb Callback function initiate when
+ *                        token exchange is complete.
  */
-module.exports.getAccessToken = function (publicToken) {
+module.exports.getAccessToken = function (publicToken, cb) {
   PUBLIC_TOKEN = publicToken;
   client.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
     if (error != null) {
       console.log('Could not exchange public_token!' + '\n' + error);
-      return { error: true };   // Find out more about the structure this error
+      cb(error)  // Find out more about the structure this error
     }
 
     ACCESS_TOKEN = tokenResponse.access_token;
@@ -43,10 +44,7 @@ module.exports.getAccessToken = function (publicToken) {
     console.log('Access Token: ' + ACCESS_TOKEN);
     console.log('Item ID: ' + ITEM_ID);
 
-    return {
-      itemId: ITEM_ID,
-      accessToken: ACCESS_TOKEN
-    };
+    cb(null, ACCESS_TOKEN);
   });
 };
 
