@@ -13,7 +13,7 @@ module.exports.add = (event, context, callback) => {
      return;
   }
 
-  const data = plaid.getAccessToken(event.requestBody.publicToken, function(err, accessToken) {
+  const data = plaid.getAccessToken(event.requestBody.publicToken, function(err, res) {
     if (err) {
       callback (null, {
         statusCode: 500,
@@ -21,9 +21,10 @@ module.exports.add = (event, context, callback) => {
       });
     }
 
-    accountsDb.put(data.itemId, data.accessToken);  // Don't need to wait for this to return.
+    const itemId      = res.itemId;
+    const accessToken = res.accessToken;
 
-    const accounts = plaid.getAccounts(function(err, res) {
+    const accounts = plaid.getAccounts(function(error, result) {
       if (err) {
         callback(null, {
           statusCode: 500,
@@ -32,16 +33,37 @@ module.exports.add = (event, context, callback) => {
         return;
       }
 
+      accountsDb.create(res);
+
+      const accountsData = parseGetAccountsResponse(res);
+
       callback(null, {
         statusCode: 200,
-        body: JSON.stringify(res);
+        body: JSON.stringify(accountsData);
       });
-
-
-
     });
-
-
   });
+};
 
+const parseGetAccountsResponse = response => {
+  let results = [];
+  const accounts = response.accounts;
+  const timestamp = new Date().getTime();
+
+  for (let i = 0; i < accounts.length; i++) {
+    const accountObj = {
+      mask: accounts[i].mask,
+      currentBalance: accounts[i].balances.current,
+      availableBalance: accounts[i].balances.available,
+      limit: accounts[i].balances.limit,
+      name: accounts[i].name,
+      official_name: accounts[i].official_name,
+      type: accounts[i].type,
+      subtype: accounts[i].subtype
+    };
+
+    results.push(accountObj);
+  }
+
+  return results;
 };

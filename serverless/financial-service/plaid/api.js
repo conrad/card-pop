@@ -44,7 +44,8 @@ module.exports.getAccessToken = function (publicToken, cb) {
     console.log('Access Token: ' + ACCESS_TOKEN);
     console.log('Item ID: ' + ITEM_ID);
 
-    cb(null, ACCESS_TOKEN);
+    const res = { itemId: ITEM_ID, accessToken: ACCESS_TOKEN }
+    cb(null, res);
   });
 };
 
@@ -68,7 +69,7 @@ module.exports.getAccounts => {
 
     return {
       accounts: authResponse.accounts,
-      numbers: authResponse.numbers,\
+      numbers: authResponse.numbers
     };
   });
 };

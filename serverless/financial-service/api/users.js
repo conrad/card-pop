@@ -27,7 +27,7 @@ module.exports.create = (event, context, callback) => {
   }
 
   // TODO: enable real encryption - no "real" passwords in the meantime.
-  createUser(userInfo(email, password))
+  createUser(packageUserData(email, password))
     .then(res => {
       callback(null, {
         statusCode: 200,
@@ -58,7 +58,7 @@ const createUser = user => {
     .then(res => user);
 };
 
-const userInfo = (email, password) => {
+const packageUserData = (email, password) => {
   const timestamp = new Date().getTime();
   const hash = cryptoJs.SHA256(password).toString(cryptoJs.enc.Base64);
 
