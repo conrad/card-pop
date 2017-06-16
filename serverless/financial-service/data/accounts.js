@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const AWS = require('aws-sdk');
-const cryptoJS = require("crypto-js");
+const enigma = require('../util/enigma');
 
 AWS.config.setPromisesDependency(require('bluebird'));
 
@@ -28,6 +28,8 @@ const packageAccountsData = (userId, data) => {
   const accounts = data.accounts;
   const timestamp = new Date().getTime();
 
+  // TODO: Use enigma.encrypt() on all of these fields written to DB
+  //       once we have it working and go beyond sandbox data.
   for (let i = 0; i < accounts.length; i++) {
     const accountObj = {
       id: uuid.v1(),
