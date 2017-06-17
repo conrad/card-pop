@@ -5,26 +5,36 @@
 const plaid = require('../plaid/api.js');
 
 module.exports.add = (event, context, callback) => {
-  if (event.requestBody.publicToken == null) {
+  const userId = event.requestBody.userId;
+  const publicToken = event.requestBody.publicToken;
+  if (!userId || !publicToken) {
     callback (null, {
        statusCode: 400,
-       body: `public token must be provided with request.`
+       body: `public token & user ID must be provided with request.`
      });
      return;
   }
 
-  const data = plaid.getAccessToken(event.requestBody.publicToken, function(err, res) {
+  // Check if you already have the access token
+  //  or else call for it from plaid.
+
+  const data = plaid.getAccessToken(userId, publicToken, function(err, accessTokenRes) {
     if (err) {
       callback (null, {
         statusCode: 500,
         body: `Unable to get access token with public token.`
       });
+      return;
     }
 
-    const itemId      = res.itemId;
-    const accessToken = res.accessToken;
+    accessTokenDb.put(
+      userId,
+      accessTokenRes.itemId,
+      accessTokenRes.accessToken
+    );
 
-    const accounts = plaid.getAccounts(function(error, result) {
+
+    const accounts = plaid.getAccounts(function(error, accountsRes) {
       if (err) {
         callback(null, {
           statusCode: 500,
@@ -33,9 +43,9 @@ module.exports.add = (event, context, callback) => {
         return;
       }
 
-      accountsDb.create(res);
+      accountsDb.create(accountsRes);
 
-      const accountsData = parseGetAccountsResponse(res);
+      const accountsData = parseGetAccountsResponse(accountsRes);
 
       callback(null, {
         statusCode: 200,
@@ -44,6 +54,7 @@ module.exports.add = (event, context, callback) => {
     });
   });
 };
+
 
 const parseGetAccountsResponse = response => {
   let results = [];

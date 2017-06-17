@@ -11,8 +11,8 @@ var PLAID_SECRET = envvar.string('PLAID_SECRET');
 var PLAID_PUBLIC_KEY = envvar.string('PLAID_PUBLIC_KEY');
 var PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox');
 
-// We store the access_token in memory - in production, store it in a secure
-// persistent data store
+// We store the access_token in memory
+// In production, store it in a secure persistent data store
 var ACCESS_TOKEN = null;
 var PUBLIC_TOKEN = null;
 var ITEM_ID = null;
@@ -43,6 +43,8 @@ module.exports.getAccessToken = function (publicToken, cb) {
     ITEM_ID = tokenResponse.item_id;
     console.log('Access Token: ' + ACCESS_TOKEN);
     console.log('Item ID: ' + ITEM_ID);
+
+    accessTokenDb.put()
 
     const res = { itemId: ITEM_ID, accessToken: ACCESS_TOKEN }
     cb(null, res);
