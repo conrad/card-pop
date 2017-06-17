@@ -1,5 +1,5 @@
 .DS_Store
-node_modules/
+node_modules
 card-viz/Temp/
 card-viz/Assets/Resources/VuforiaConfiguration.asset
 todo
@@ -7,3 +7,8 @@ todo
 images/
 credentials/
 notes/
+.vscode
+.module-cache
+*.log*
+build
+dist
