@@ -32,6 +32,14 @@ functions:
       - http:
           path: users/create
           method: post
+  login:
+    handler: api/users.login
+    memorySize: 128
+    description: Log user into Card Pop app.
+    events:
+      - http:
+          path: users/login
+          method: post
   addAccount:
     handler: api/accounts.add
     description: Add new financial accounts to a user profile.
@@ -39,6 +47,8 @@ functions:
       - http:
           path: users/{id}/accounts/add
           method: post
+
+
   # getAccountData:
   #   handler: api/accounts.get
   #   memorySize: 128

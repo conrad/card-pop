@@ -3,10 +3,40 @@
 const cryptoJs = require('crypto-js');
 const uuid = require('uuid');
 const AWS = require('aws-sdk');
+const usersDb = require('../data/usersDb.js')
 
 AWS.config.setPromisesDependency(require('bluebird'));
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
+
+module.exports.login = (event, context, callback) => {
+  const requestBody = JSON.parse(event.body);
+
+  const email = requestBody.email;
+  const password = requestBody.password;
+
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    console.error('Validation Failed');
+    callback(new Error('Couldn\'t create user because of validation errors.'));
+    return;
+  }
+
+  usersDb.checkLogin(email, password)
+    .then(res => {
+      // Create session & send session access token
+
+    })
+    .catch(err => {
+
+    });
+
+
+  });
+
+
+};
+
 
 module.exports.create = (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
@@ -27,7 +57,7 @@ module.exports.create = (event, context, callback) => {
   }
 
   // TODO: enable real encryption - no "real" passwords in the meantime.
-  createUser(packageUserData(email, password))
+  usersDb.create(email, password))
     .then(res => {
       callback(null, {
         statusCode: 200,
@@ -39,34 +69,12 @@ module.exports.create = (event, context, callback) => {
     })
     .catch(err => {
       console.log(err);
-      callback(null, {
-        statusCode: 500,
-        body: JSON.stringify({
-          message: `Unable to create user with email ${email}`
-        })
-      })
+      callback(new Error(`Unable to create user with email ${email}`))
+      // callback(null, {
+      //   statusCode: 500,
+      //   body: JSON.stringify({
+      //     message: `Unable to create user with email ${email}`
+      //   })
+      // })
     });
-};
-
-const createUser = user => {
-  console.log('Creating user');
-  const userData = {
-    TableName: process.env.USER_TABLE,
-    Item: user,
-  };
-  return dynamoDb.put(userData).promise()
-    .then(res => user);
-};
-
-const packageUserData = (email, password) => {
-  const timestamp = new Date().getTime();
-  const hash = cryptoJs.SHA256(password).toString(cryptoJs.enc.Base64);
-
-  return {
-    id: uuid.v1(),
-    email: email,
-    password: hash,
-    submittedAt: timestamp,
-    updatedAt: timestamp,
-  };
 };

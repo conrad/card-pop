@@ -23,6 +23,9 @@ module.exports.put = (userId, itemId, accessToken, callback) => {
   return dynamoDb.put(accessTokenTblData).promise()
   .then(res => {
     callback(null, res);
+  })
+  .catch(err => {
+    callback(err)
   });
 };
 

@@ -3,6 +3,8 @@
 //       Can we add middleware for this?
 
 const plaid = require('../plaid/api.js');
+const plaidAccessTokenDb = require('../data/plaidAccessTokenDb.js');
+const accountsDb = require('../data/accountsDb.js')
 
 module.exports.add = (event, context, callback) => {
   const userId = event.requestBody.userId;
@@ -27,7 +29,7 @@ module.exports.add = (event, context, callback) => {
       return;
     }
 
-    accessTokenDb.put(
+    plaidAccessTokenDb.put(
       userId,
       accessTokenRes.itemId,
       accessTokenRes.accessToken
