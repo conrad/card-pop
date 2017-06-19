@@ -1,14 +1,22 @@
 .DS_Store
+
+# package directories
 node_modules
+
+# generated
 card-viz/Temp/
-card-viz/Assets/Resources/VuforiaConfiguration.asset
-todo
-*.log
-images/
-credentials/
-notes/
-.vscode
-.module-cache
-*.log*
 build
 dist
+*.log
+.module-cache
+*.log*
+
+# private
+card-viz/Assets/Resources/VuforiaConfiguration.asset
+credentials/
+images/
+
+# personal notes
+local
+notes/
+.vscode

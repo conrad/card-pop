@@ -10,7 +10,12 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 
 module.exports.checkLogin = (email, password) => {
-  console.log('TODO: check user info');
+  console.log('About to check user info');
+  return dynamoDb.get({
+    TableName: process.env.USER_TABLE,
+    Key: "email",
+    Item: email,
+  }).promise().then(res => res);
   // TODO: Look up user by email (encrypted?), hash the password, & check equivalence.
 };
 

@@ -14,9 +14,21 @@ class LoginService {
     .then(res => {
       // Create session & send session access token
       console.log('check login results: ' + res);
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: "come on, dog. what is it? " + res
+        })
+      });
     })
     .catch(err => {
       console.log('error with checking login credentials: ' + err);
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          message: "bummer... " + err
+        })
+      });
     });
   }
 }
