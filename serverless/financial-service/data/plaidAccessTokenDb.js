@@ -16,7 +16,7 @@ module.exports.put = (userId, itemId, accessToken, callback) => {
   };
 
   const accessTokenTblData = {
-    TableName: process.env.ACCESS_TOKEN_TABLE,
+    TableName: process.env.PLAID_ACCESS_TOKEN_TABLE,
     Item: enigma.encrypt(JSON.stringify(rowData))
   };
 
