@@ -30,7 +30,7 @@ module.exports.decrypt = encryptedData => {
 /// hash data using a salt
 /// @param {String} password the data to encrypt
 /// @return {String} hash
-module.exports.store = password => {
+module.exports.hash = password => {
   bcrypt.genSalt(creds.saltRounds, function(err, salt) {
     bcrypt.hash(password, salt, function(err, hash) {
         // Store hash in your password DB.

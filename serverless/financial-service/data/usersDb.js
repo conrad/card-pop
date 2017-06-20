@@ -9,15 +9,22 @@ AWS.config.setPromisesDependency(require('bluebird'));
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 
-module.exports.checkLogin = (email, password) => {
+module.exports.getUser = (email) => {
   console.log('About to check user info');
-  return dynamoDb.get({
+
+  const params = {
     TableName: process.env.USER_TABLE,
-    Key: "email",
-    Item: email,
-  }).promise().then(res => res);
+    Key: {
+      "email": email
+    }
+  };
+
+  return dynamoDb.get(params).promise()
+  .then(res => res)
+  .catch(err => err);
   // TODO: Look up user by email (encrypted?), hash the password, & check equivalence.
 };
+
 
 module.exports.saveUser = (email, password) => {
   console.log('Creating user');

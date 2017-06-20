@@ -1,3 +1,6 @@
+const cryptoJs = require('crypto-js');
+
+
 class LoginService {
   constructor(db) {
     this.db = db;
@@ -10,24 +13,33 @@ class LoginService {
       return;
     }
 
-    this.db.checkLogin(email, password)
+    // TODO: Push hashing functionality into enigma.
+    const hashPassword = cryptoJs.SHA256(password).toString(cryptoJs.enc.Base64);
+
+    this.db.getUser(email)
     .then(res => {
       // Create session & send session access token
-      console.log('check login results: ' + res);
-      callback(null, {
-        statusCode: 200,
-        body: JSON.stringify({
-          message: "come on, dog. what is it? " + res
-        })
-      });
+      console.log('check login results: ' + JSON.stringify(res));
+      if (res.Item.password === hashPassword) {
+        callback(null, {
+          statusCode: 200,
+          body: 'Yes, you may pass.'
+        });
+
+        // TODO: Write to db to update last login.
+
+      } else {
+        callback(null, {
+          statusCode: 200,
+          body: 'Oprosti. You may not be who you claim to be.'
+        });
+      }
     })
     .catch(err => {
-      console.log('error with checking login credentials: ' + err);
+      console.log('error with checking login credentials: ' + JSON.stringify(err));
       callback(null, {
-        statusCode: 500,
-        body: JSON.stringify({
-          message: "bummer... " + err
-        })
+        statusCode: 200,
+        body: JSON.stringify(err)
       });
     });
   }
