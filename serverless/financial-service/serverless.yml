@@ -47,16 +47,14 @@ functions:
       - http:
           path: users/{id}/accounts/add
           method: post
-
-
-  # getAccountData:
-  #   handler: controllers/accounts.get
-  #   memorySize: 128
-  #   description: Create new user.
-  #   events:
-  #     - http:
-  #         path: users/create
-  #         method: post
+  getAccountData:
+    handler: controllers/accounts.simpleGet
+    memorySize: 128
+    description: Just get account data for a particular item.
+    events:
+      - http:
+          path: accounts
+          method: post
 
 resources:
   Resources:

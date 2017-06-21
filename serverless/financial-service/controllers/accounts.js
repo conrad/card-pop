@@ -6,6 +6,30 @@ const plaid = require('../plaid/api.js');
 const plaidAccessTokenDb = require('../data/plaidAccessTokenDb.js');
 const accountsDb = require('../data/accountsDb.js')
 
+
+module.exports.simpleGet = (event, context, callback) => {
+  const publicToken = event.requestBody.publicToken;
+  plaid.getAccessToken(publicToken, function(err, accessTokenRes) {
+    if (err) {
+      callback (new Error(`Unable to get access token with public token.`));
+      return;
+    }
+
+    plaid.getAccounts(function(error, accountsRes) {
+      if (err) {
+        callback(new Error(`Failed to retrieve accounts from Plaid API`));
+        return;
+      }
+
+      callback(null, {
+        statusCode: 200
+        body: JSON.stringify(parseGetAccountsResponse(accountsRes));
+      });
+    });
+  });
+};
+
+
 module.exports.add = (event, context, callback) => {
   const userId = event.requestBody.userId;
   const publicToken = event.requestBody.publicToken;
@@ -20,6 +44,7 @@ module.exports.add = (event, context, callback) => {
   // Check if you already have the access token
   //  or else call for it from plaid.
 
+  // TODO: Update this or this method called to make these args match
   const data = plaid.getAccessToken(userId, publicToken, function(err, accessTokenRes) {
     if (err) {
       callback (null, {
