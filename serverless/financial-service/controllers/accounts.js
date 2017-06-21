@@ -8,7 +8,9 @@ const accountsDb = require('../data/accountsDb.js')
 
 
 module.exports.simpleGet = (event, context, callback) => {
-  const publicToken = event.requestBody.publicToken;
+  const requestBody = JSON.parse(event.body);
+  const publicToken = requestBody.publicToken;
+
   plaid.getAccessToken(publicToken, function(err, accessTokenRes) {
     if (err) {
       callback (new Error(`Unable to get access token with public token.`));
@@ -21,9 +23,11 @@ module.exports.simpleGet = (event, context, callback) => {
         return;
       }
 
+      console.log(accountsRes);
+      console.log(accountsRes.accounts[0].balances.current);
       callback(null, {
-        statusCode: 200
-        body: JSON.stringify(parseGetAccountsResponse(accountsRes));
+        statusCode: 200,
+        body: JSON.stringify(parseGetAccountsResponse(accountsRes))
       });
     });
   });
@@ -44,8 +48,9 @@ module.exports.add = (event, context, callback) => {
   // Check if you already have the access token
   //  or else call for it from plaid.
 
-  // TODO: Update this or this method called to make these args match
-  const data = plaid.getAccessToken(userId, publicToken, function(err, accessTokenRes) {
+  // TODO: Update this method create a similar with a signature
+  //       to include the userId.
+  const data = plaid.getAccessToken(publicToken, function(err, accessTokenRes) {
     if (err) {
       callback (null, {
         statusCode: 500,
@@ -76,7 +81,7 @@ module.exports.add = (event, context, callback) => {
 
       callback(null, {
         statusCode: 200,
-        body: JSON.stringify(accountsData);
+        body: JSON.stringify(accountsData)
       });
     });
   });

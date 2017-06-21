@@ -4,11 +4,12 @@ var envvar = require('envvar');
 var bodyParser = require('body-parser');
 var moment = require('moment');
 var plaid = require('plaid');
+var creds = require('../credentials/plaidCreds.js')
 
 var APP_PORT = envvar.number('APP_PORT', 8000);
-var PLAID_CLIENT_ID = envvar.string('PLAID_CLIENT_ID');
-var PLAID_SECRET = envvar.string('PLAID_SECRET');
-var PLAID_PUBLIC_KEY = envvar.string('PLAID_PUBLIC_KEY');
+// var PLAID_CLIENT_ID = envvar.string('PLAID_CLIENT_ID');
+// var PLAID_SECRET = envvar.string('PLAID_SECRET');
+// var PLAID_PUBLIC_KEY = envvar.string('PLAID_PUBLIC_KEY');
 var PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox');
 
 // We store the access_token in memory
@@ -19,9 +20,9 @@ var ITEM_ID = null;
 
 // Initialize the Plaid client
 var client = new plaid.Client(
-  PLAID_CLIENT_ID,
-  PLAID_SECRET,
-  PLAID_PUBLIC_KEY,
+  creds.client_id,
+  creds.secret,
+  creds.public_key,
   plaid.environments[PLAID_ENV]
 );
 
@@ -60,7 +61,7 @@ module.exports.setAccessToken = accessToken => {
  * @return {object} Returns data objects on accounts for item (~institution)
  * TODO: Understand better the structure of this data.
  */
-module.exports.getAccounts => {
+module.exports.getAccounts = () => {
   client.getAuth(ACCESS_TOKEN, function(error, authResponse) {
     if (error != null) {
       var msg = 'Unable to pull accounts from the Plaid API.';
@@ -80,7 +81,7 @@ module.exports.getAccounts => {
  * @return {object} Returns data objects on the item (~institution)
  * TODO: Understand better the structure of this data.
  */
-module.exports.getItem => {
+module.exports.getItem = () => {
   // Pull Item - info on products available & billed, webhook info, etc.
   client.getItem(ACCESS_TOKEN, function(error, itemResponse) {
     if (error != null) {
@@ -110,7 +111,7 @@ module.exports.getItem => {
  * @return {object} Returns data object on transactions for a user.
  * TODO: Understand better the structure of this data.
  */
-module.export.getTransactions => {
+module.exports.getTransactions = () => {
   // Pull transactions for the Item for the last 30 days
   var startDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
   var endDate = moment().format('YYYY-MM-DD');
