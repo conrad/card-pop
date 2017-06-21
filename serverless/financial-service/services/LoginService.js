@@ -8,7 +8,6 @@ class LoginService {
 
   checkCredentials(email, password, callback) {
     if (typeof email !== 'string' || typeof password !== 'string') {
-      console.error('Validation Failed');
       callback(new Error('Couldn\'t create user because of validation errors.'));
       return;
     }
