@@ -64,6 +64,8 @@ public class CardTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 
 	private void OnTrackingFound()
 	{
+		Debug.Log("Something found.");
+
 		Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
 		Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 

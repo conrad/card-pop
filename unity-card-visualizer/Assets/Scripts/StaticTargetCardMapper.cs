@@ -11,11 +11,11 @@ public class StaticTargetCardMapper : ITargetCardMapper
 	{
 		// TODO: Implement request to data table of these mappings.
 		dict.Add("Chase-Sapphire-Preferred-cropped", "Chase Sapphire Preferred");
-		dict.Add("Chase-Sapphire-Reserve-cropped", "Chase Sapphire Reserve");
-		dict.Add("Chase-Freedom-Unlimited-cropped", "Chase Freedom Unlimited");
-		dict.Add("Chase-Amazon-Reward-cropped", "Chase Amazon Rewards");
-
-		dict.Add("Charles-Schwab-Debit-cropped", "Charles Schwab Debit");
+		dict.Add("chase-sapphire-reserve", "Chase Sapphire Reserve");
+		dict.Add("chase-Freedom", "Chase Freedom Unlimited");
+//		dict.Add("Chase-Freedom-Unlimited-cropped", "Chase Freedom Unlimited");
+//		dict.Add("Chase-Amazon-Reward-cropped", "Chase Amazon Rewards");
+//		dict.Add("Charles-Schwab-Debit-cropped", "Charles Schwab Debit");
 	}
 
 

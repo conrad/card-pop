@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Vuforia;
 
 
 
@@ -30,6 +29,9 @@ public class CardDataService
 		// return the account balance 
 
 		// default for now.
+
+		Debug.Log("trying to match: " + targetName);
+
 		return new CreditCardAccount(
 			1,
 			targetCardMapper.MapCardFromTarget(targetName), 

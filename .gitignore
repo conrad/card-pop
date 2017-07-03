@@ -4,7 +4,9 @@
 node_modules
 
 # generated
-card-viz/Temp/
+Temp/
+metadata/
+ShaderCache/
 build
 dist
 *.log
