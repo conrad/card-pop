@@ -1,2 +1,1 @@
-export { TodoStore } from './TodoStore';
-export { RouterStore } from './RouterStore';
+export { PlaidLinkStore } from './PlaidLinkStore';

@@ -8,20 +8,20 @@ using UnityEngine;
  */ 
 public class ObjectScaler : MonoBehaviour
 {
-	private float maxScale = 7.0f;
+//	private float maxScale = 7.0f;
 	private float speed = 15.0f;
 
 	private GameObject scalingObject;
-	private Vector3 origPos;
-	private float origScale;
+//	private Vector3 origPos;
+//	private float origScale;
 	private HeightMapper heightMapper;
 
 
 	public ObjectScaler(GameObject gameObject)
 	{
 		scalingObject = gameObject;
-		origPos = gameObject.transform.position;
-		origScale = gameObject.transform.localScale.y;
+//		origPos = gameObject.transform.position;
+//		origScale = gameObject.transform.localScale.y;
 		heightMapper = new HeightMapper();
 	}
 

@@ -1,3 +1,3 @@
-import TodoModel from './TodoModel';
+import PlaidLinkModel from './PlaidLinkModel';
 
-export { TodoModel };
+export { PlaidLinkModel };

@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 
 
-public class NetworkManager 
+public class NetworkManager : MonoBehaviour
 {
 	public AsyncOperation MakeAuthRequest()
 	{

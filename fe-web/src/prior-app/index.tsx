@@ -4,10 +4,9 @@ import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { App } from './containers/App';
-import { PlaidLinkApp } from './containers/PlaidLinkApp';
-import { PlaidLinkModel } from './models/PlaidLinkModel';
-import { PlaidLinkStore } from './stores';
-import { STORE_PLAID_LINK } from './constants/stores';
+import { PlaidModel } from './models/PlaidModel';
+import { PlaidStore, RouterStore } from './stores';
+import { STORE_PLAID, STORE_ROUTER } from './constants/stores';
 //import { TodoFilter } from './constants/todos';
 
 // enable MobX strict mode
@@ -25,7 +24,8 @@ const defaultPlaidData = {
 const plaidStore = new PlaidStore(defaultPlaidData);
 const routerStore = new RouterStore(browserHistory);
 const rootStores = {
-  [STORE_PLAID_LINK]: plaidLinkStore
+  [STORE_PLAID]: plaidStore,
+  [STORE_ROUTER]: routerStore
 };
 
 ReactDOM.render(
