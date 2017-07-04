@@ -9,7 +9,7 @@ public class BrowserOpener : MonoBehaviour {
 	public void OnButtonClicked() {
 		InAppBrowser.DisplayOptions options = new InAppBrowser.DisplayOptions();
 		options.displayURLAsPageTitle = false;
-		options.pageTitle = "InAppBrowser example";
+		options.pageTitle = "Card Pop Account Linking";
 
 //		Application.OpenURL(pageToOpen);
 		InAppBrowser.OpenURL(pageToOpen, options);
