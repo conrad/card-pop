@@ -5,25 +5,15 @@ import { Provider } from 'mobx-react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { App } from './containers/App';
 import { PlaidLinkApp } from './containers/PlaidLinkApp';
-import { PlaidLinkModel } from './models/PlaidLinkModel';
 import { PlaidLinkStore } from './stores';
 import { STORE_PLAID_LINK } from './constants/stores';
-//import { TodoFilter } from './constants/todos';
+import { PUBLIC_KEY } from './credentials/pubKey';
 
 // enable MobX strict mode
 useStrict(true);
 
-// default fixtures for PlaidStore - Shouldn't use.
-const defaultPlaidData = {
-  PLAID_ENV: 'sandbox',
-  PLAID_PUBLIC_KEY: 'affaskfds',
-  PLAID_SECRET: 'SDFFKJHKDSAF',
-  PLAID_CLIENT_KEY: 'KLH2334'
-};
-
 // prepare MobX stores
-const plaidStore = new PlaidStore(defaultPlaidData);
-const routerStore = new RouterStore(browserHistory);
+const plaidLinkStore = new PlaidLinkStore(PUBLIC_KEY, 'sandbox');    // dummy params. shouldn't use.
 const rootStores = {
   [STORE_PLAID_LINK]: plaidLinkStore
 };
