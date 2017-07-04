@@ -4,7 +4,6 @@
 node_modules
 
 # generated
-metadata/
 Temp/
 ShaderCache/
 Builds/
