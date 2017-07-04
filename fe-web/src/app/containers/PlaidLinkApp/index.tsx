@@ -25,12 +25,10 @@ export class PlaidLinkApp extends React.Component<PlaidLinkAppProps, PlaidLinkAp
     // TODO: FIRST: send user back to Unity Scene with public token data.
     this.props[STORE_PLAID_LINK].setPublicToken(token);
     // TODO: LATER: send token to client server to be saved.
-
   }
 
   render() {
     const plaidLinkStore = this.props[STORE_PLAID_LINK] as PlaidLinkStore;
-
 
     return (
       <PlaidLink
@@ -39,6 +37,7 @@ export class PlaidLinkApp extends React.Component<PlaidLinkAppProps, PlaidLinkAp
         env={plaidLinkStore.env}
         clientName="card-pop"
         onSuccess={this.handleOnSuccess}
+        apiVersion="v2"
         />
     );
   }
