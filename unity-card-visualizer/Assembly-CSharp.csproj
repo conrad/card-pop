@@ -51,6 +51,8 @@
      <Compile Include="Assets\InAppBrowser\Example\LocalFileOpener.cs" />
      <Compile Include="Assets\InAppBrowser\Scripts\InAppBrowser.cs" />
      <Compile Include="Assets\InAppBrowser\Scripts\InAppBrowserBridge.cs" />
+     <Compile Include="Assets\Scripts\Browser\BrowserHandler.cs" />
+     <Compile Include="Assets\Scripts\Browser\CallbackDataHandler.cs" />
      <Compile Include="Assets\Scripts\Data\CardDataService.cs" />
      <Compile Include="Assets\Scripts\Data\Mapping\ITargetCardMapper.cs" />
      <Compile Include="Assets\Scripts\Data\Mapping\StaticTargetCardMapper.cs" />
