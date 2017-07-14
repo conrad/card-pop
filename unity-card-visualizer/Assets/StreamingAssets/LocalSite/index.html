@@ -36,14 +36,27 @@
         return (/android/i.test(userAgent));
       };
 
+      function getUserAgent() {
+        return navigator.userAgent || navigator.vendor || window.opera;
+      };
 
-      function returnToUnity(token) {
-        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      function sendToken(token) {
+        var userAgent = getUserAgent();
 
         if (isIOS(userAgent)) {
           appendIframeWithURL('inappbrowserbridge://' + token);
         } else if (isAndroid(userAgent)) {
           UnityInAppBrowser.sendMessageFromJS(token);
+        }
+      };
+
+      function returnToUnity() {
+        var userAgent = getUserAgent();
+
+        if (isIOS(userAgent)) {
+          appendIframeWithURL('inappbrowserbridge://' + "close-browser");
+        } else if (isAndroid(userAgent)) {
+          UnityInAppBrowser.sendMessageFromJS("close-browser");
         }
       };
 
@@ -55,7 +68,8 @@
         key: "cf0dcae353729c83f3f10a0adbeb2d",
         onSuccess: function(public_token) {
           console.log('got the public token!', public_token);
-          returnToUnityWithToken(public_token);
+          sendToken(public_token);
+          returnToUnity();
           // $.post('/get_access_token', {
           //   public_token: public_token
           // }, function() {
@@ -64,6 +78,15 @@
           //     $('#app, #steps').fadeIn('slow');
           //   });
           // });
+        },
+        onExit: function(err, metadata) {
+          if (err != null) {
+            // The user encountered a Plaid API error prior to exiting.
+            console.log('Error:', err.log);
+          }
+          // metadata contains information about the institution
+          // that the user selected and the most recent API request IDs.
+          // Storing this information can be helpful for support.
         }
       });
       

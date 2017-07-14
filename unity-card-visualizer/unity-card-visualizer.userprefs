@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/InAppBrowser/Scripts/InAppBrowserBridge.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/BrowserListener.cs">
     <Files>
-      <File FileName="Assets/InAppBrowser/Example/JSExecute.cs" Line="13" Column="42" />
+      <File FileName="Assets/InAppBrowser/Example/JSExecute.cs" Line="16" Column="28" />
       <File FileName="Assets/InAppBrowser/Scripts/InAppBrowserBridge.cs" Line="8" Column="40" />
-      <File FileName="Assets/InAppBrowser/Scripts/InAppBrowser.cs" Line="136" Column="44" />
-      <File FileName="Assets/Scripts/Browser/CallbackDataHandler.cs" Line="20" Column="3" />
+      <File FileName="Assets/InAppBrowser/Scripts/InAppBrowser.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Browser/CallbackDataHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Browser/BrowserHandler.cs" Line="26" Column="15" />
+      <File FileName="Assets/BrowserListener.cs" Line="20" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
